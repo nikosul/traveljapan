@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<link type="text/css" rel="stylesheet" href="css.bootstrap.min.css" th:href="@{css/bootstrap.min.css}">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<meta charset="ISO-8859-1">
+<title>List of Cities</title>
+</head>
+<body>
+
+<div class="container">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Travel Japan</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Destinations<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Activities</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Planner</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          More...</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">FAQ</a>
+          <a class="dropdown-item" href="#">About</a>
+          <a class="dropdown-item" href="#">Services</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+      <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
+
+<img src="/img/architecture-decor-illuminated-581308.jpg" class="img-fluid" alt="Responsive image" >
+ <div><h3 th:inline="text"> Welcome [[${#httpServletRequest.remoteUser}]]</h3></div>
+<table class ="table table-striped">
+	<tr>
+		<th>Name</th>
+		<th>Prefecture</th>
+		<th>Region</th>
+		<th>Geographical location</th>
+		<th>Population</th>
+		<th>Popularity</th>
+		<th>Comments</th>
+		<th></th>
+		
+	</tr>
+	<tr th:each="city : ${cities}">
+		<td><a th:href="@{activities/{cityId}(cityId=${city.cityId})}" th:text="${city.name}">name</a></td>
+		<td th:text="${city.prefecture}">prefecture</td>	
+		<td th:text="${city.region}">region</td>
+		<td th:text="${city.aerial}">geographical location</td>
+		<td th:text="${city.population}">population</td>
+		<td>100%</td>
+		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/comments/{cityId}(cityId=${city.cityId})}">+1000</a></td>
+		<td></td>
+		<td sec:authorize="hasAuthority('USER')"></td>
+		
+		
+		
+	</tr>	
+</table>
+</div>
+</body>
+</html>
