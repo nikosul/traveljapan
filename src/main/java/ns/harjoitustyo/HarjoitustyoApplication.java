@@ -40,73 +40,31 @@ public class HarjoitustyoApplication extends SpringBootServletInitializer {
 			
 
 			
+			// Cities...
+			// CityId 1...2...3...
+			crepo.save(new City("Tokyo", "Tokyo", "Kantō", "Eastern-Coast of Japan", 8673098));
+			crepo.save(new City("Yokohama", "Kanagawa", "Kantō", "Eastern-Coast of Japan", 3697894));
+			crepo.save(new City("Ōsaka", "Osaka", "Kansai", "South-Eastern Coast of Japan", 2668586));
+			crepo.save(new City("Nagoya", "Aichi", "Chūbu", "Central-Coast of Japan", 2283289));
+			crepo.save(new City("Sapporo", "Hokkaidō", "Hokkaidō", "Northern-Coast of Japan", 1918096));
+			crepo.save(new City("Fukuoka", "Fukuoka", "Kyushu", "South-Eastern Coast of Japan", 1581527));
 			
-			// cityId 1
-			crepo.save(new City("Tokyo", "Tokyo", "Kantō", "Eastern-Coast of Japan", 1000000));
-			
-			// cityId2
-			crepo.save(new City("Ōsaka", "Osaka", "Kansai", "South-Eastern Coast of Japan", 1000000));
-			
-			// 3
-			crepo.save(new City("Yokohama", "Kanagawa", "Kantō", "Eastern-Coast of Japan", 1000000));
-			
-			// 4
-			crepo.save(new City("Nagoya", "Aichi", "Chūbu", "Central-Coast of Japan", 1000000));
-			
-			// 5
-			crepo.save(new City("Tokyo", "Tokyo", "Kantō", "Eastern-Coast of Japan", 1000000));
-			
-			// 6
-			crepo.save(new City("Ōsaka", "Osaka", "Kansai", "South-Eastern Coast of Japan", 1000000));
-			
-			// 7
-			crepo.save(new City("Yokohama", "Kanagawa", "Kantō", "Eastern-Coast of Japan", 1000000));
-			
-			// 8
-			crepo.save(new City("Nagoya", "Aichi", "Chūbu", "Central-Coast of Japan", 1000000));
-			
-			// 9
-			crepo.save(new City("Tokyo", "Tokyo", "Kantō", "Eastern-Coast of Japan", 1000000));
-			
-			// 10
-			crepo.save(new City("Ōsaka", "Osaka", "Kansai", "South-Eastern Coast of Japan", 1000000));
 			
 			// Activities...
-			// activityId 1
-			arepo.save(new Activity("Sightseeing, Culture, Nightlife, Food, Beaches", crepo.findById(1).get(0)));
-			
-			// 2
-			arepo.save(new Activity("Sightseeing, Culture, Nightlife, Food, Beaches", crepo.findById(2).get(0)));
-			
-			// 3
-			arepo.save(new Activity("Sightseeing, Culture, Nightlife, Food, Beaches", crepo.findById(3).get(0)));
-			
-			// 4
-			arepo.save(new Activity("Sightseeing, Culture, Nightlife, Food, Beaches", crepo.findById(4).get(0)));
-			
-			// 5
-			arepo.save(new Activity("Sightseeing, Culture, Nightlife, Food, Beaches", crepo.findById(5).get(0)));
-			
-			// 6
-			arepo.save(new Activity("Sightseeing, Culture, Nightlife, Food, Beaches", crepo.findById(6).get(0)));
-			
-			// 7
-			arepo.save(new Activity("Sightseeing, Culture, Nightlife, Food, Beaches", crepo.findById(7).get(0)));
-			
-			// 8
-			arepo.save(new Activity("Sightseeing, Culture, Nightlife, Food, Beaches", crepo.findById(8).get(0)));
-			
-			// 9
-			arepo.save(new Activity("Sightseeing, Culture, Nightlife, Food, Beaches", crepo.findById(9).get(0)));
-			
-			//10
-			arepo.save(new Activity("Sightseeing, Culture, Nightlife, Food, Beaches", crepo.findById(10).get(0)));
+			// activityId 1...2...3...      
+			arepo.save(new Activity("Culture, Nightlife", crepo.findById(1).get(0)));
+			arepo.save(new Activity("Sightseeing, Old Culture", crepo.findById(2).get(0)));
+			arepo.save(new Activity("Traditions, Castles", crepo.findById(3).get(0)));
+			arepo.save(new Activity("Ocean, Food", crepo.findById(4).get(0)));
+			arepo.save(new Activity("Sushi", crepo.findById(5).get(0)));
+			arepo.save(new Activity("Ramen", crepo.findById(6).get(0)));
 			
 			
-//			dataLog.info("Test data of all cities");
-//				for (City city : crepo.findAll()) {
-//					dataLog.info(city.toString());
-//			}
+			
+			dataLog.info("Can print data of all the cities?");
+				for (City city : crepo.findAll()) {
+					dataLog.info(city.toString());
+			}
 			
 			// TEST USERS // username, password, email, user role	
 			User user = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "test@user.com", "USER");

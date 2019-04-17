@@ -59,6 +59,11 @@ public class Activity {
 
 	@Override
 	public String toString() {
-		return "Activities [activityId=" + activityId + ", type=" + type + ", + city=" + city + "]";
+		if(this.city != null) {
+			return "Activities [activityId=" + activityId + ", type=" + type + ", city=" + this.getCity() + "]";
+		}	
+		else {
+			return "Activities [activityId=" + activityId + ", type=" + type + "]";
+		}
 	}
 }

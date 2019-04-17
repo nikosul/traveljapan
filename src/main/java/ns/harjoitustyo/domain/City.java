@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class City {
@@ -24,7 +23,6 @@ public class City {
 	private int population;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "city")
-	@JsonIgnoreProperties("cities")
 	
 	private List<Activity> activities;
 	
@@ -99,7 +97,7 @@ public class City {
 
 	@Override
 	public String toString() {
-		return "City [cityId=" + cityId + ", name=" + name + ", prefecture=" + prefecture + ", region=" + region
-				+ ", aerial=" + aerial + ", population=" + population + ", activities=" + activities + "]";
-	}
+			return "City [cityId=" + cityId + ", name=" + name + ", prefecture=" + prefecture + ", region=" + region
+					+ ", aerial=" + aerial + ", population=" + population + "]";
+		}
 }

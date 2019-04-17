@@ -32,10 +32,11 @@ public class CityController {
 		model.addAttribute("cities", cities);
 		return "citylist";
 	}
-	
-	@RequestMapping(value = "/activities/{cityId}")
+	// activities according to a city
+	@RequestMapping(value = "/activities/{cityId}", method = RequestMethod.GET)
 	public String activitiesCity(@PathVariable("cityId") Long cityId, Model model) {
-		model.addAttribute("activity", arepo.findById(cityId));
+		model.addAttribute("city", crepo.findById(cityId));
+		model.addAttribute("activities", arepo.findAll());
 		return "activities";
 	}
 	
@@ -43,16 +44,28 @@ public class CityController {
 	@RequestMapping(value = "/add")
 	public String addCity(Model model) {
 		model.addAttribute("city", new City());
-		model.addAttribute("City", crepo.findAll());
 		return "addcity";
 	}
 	
-	// post the new city
-	@RequestMapping(value = "/post", method = RequestMethod.POST)
+	// save the new city
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveCity(@ModelAttribute City city) {
 		crepo.save(city);
-		return "redirect:citylist";
+		return "redirect:/home";
 	}
+	
+	@RequestMapping(value = "/edit/{cityId}")
+	public String addCity(@PathVariable("cityId") Long cityId, Model model) {
+		model.addAttribute("city", crepo.findById(cityId));
+		model.addAttribute("activities", arepo.findAll());
+		return "editcity";
+	}
+	
+	@RequestMapping(value = "/delete/{cityId}", method = RequestMethod.GET)
+	public String deleteCity(@PathVariable("cityId") Long cityId) {
+		crepo.deleteById(cityId);
+		return "redirect:../home";
+}
 	// comments page
 	@RequestMapping(value = "/comments/{cityId}")
 	public String commentCity(@PathVariable("cityId") Long cityId, Model model) {
@@ -71,7 +84,4 @@ public class CityController {
 	public @ResponseBody Optional<City> findCityRest(@PathVariable("cityId") Long cityId){
 		return crepo.findById(cityId);
 	}
-	
-	
-	
 }
